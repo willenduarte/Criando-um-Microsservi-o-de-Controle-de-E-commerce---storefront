@@ -1,0 +1,22 @@
+services:
+  storefrontapp:
+    build:
+      context: .
+    command: bash start-dev.sh
+    env_file:
+      crendencia.env
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+    ports:
+      - "8081:8081"
+      - "5006:5005"
+    volumes:
+      - .:/storefront:z
+    networks:
+      - ecommerce-net
+networks:
+  ecommerce-net:
+    name: ecommerce-net
+    external: true
+volumes:
+  db:
